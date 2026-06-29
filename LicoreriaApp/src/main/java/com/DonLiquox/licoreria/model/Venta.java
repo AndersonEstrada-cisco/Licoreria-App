@@ -1,6 +1,8 @@
 package com.DonLiquox.licoreria.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Venta {
     private int idVenta;
@@ -8,22 +10,22 @@ public class Venta {
     private Cliente cliente;
     private double total;
     private LocalDateTime fecha;
+    private List<DetalleVenta> detalles;
 
-    public Venta(int idVenta, Usuario usuario, Cliente cliente, double total) {
+    public Venta(int idVenta, Usuario usuario, Cliente cliente) {
         this.idVenta = idVenta;
         this.usuario = usuario;
         this.cliente = cliente;
-        setTotal(total);
         this.fecha = LocalDateTime.now();
+        this.detalles = new ArrayList<>();
+        this.total = 0;
     }
 
-
-    public void setTotal(double total) {
-        if (total <= 0) {
-            throw new IllegalArgumentException("El total de venta debe ser positivo");
-        }
-        this.total = total;
+    public void agregarDetalle(DetalleVenta detalle) {
+        detalles.add(detalle);
+        total += detalle.getSubtotal();
     }
+
 
     public int getIdVenta() {
         return idVenta;
@@ -40,4 +42,6 @@ public class Venta {
     public LocalDateTime getFecha() {
         return fecha;
     }
+
+    public List<DetalleVenta> getDetalles() { return detalles; }
 }
