@@ -41,3 +41,6 @@ CREATE TABLE detalle_venta (
    cantidad INT NOT NULL CHECK (cantidad > 0),
    subtotal NUMERIC(10,2) NOT NULL
 );
+INSERT INTO usuarios(nombre, cedula, edad, correo, clave, rol)
+VALUES ('alexis', '0202659272', 19, 'alexis@gmail.com', 'alex15', 'Administrador');
+SELECT * FROM usuarios
