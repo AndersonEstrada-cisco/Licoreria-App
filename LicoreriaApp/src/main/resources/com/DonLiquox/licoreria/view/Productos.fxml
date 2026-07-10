@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.DonLiquox.licoreria.controller.ProductoController">
+    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Inventario de Productos" />
+    <GridPane hgap="10" vgap="10">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="80.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" />
+        </columnConstraints>
+        <children>
+            <Label text="Nombre" />
+            <TextField fx:id="txtNombre" GridPane.columnIndex="1" />
+            <Label text="Categoría" GridPane.rowIndex="1" />
+            <TextField fx:id="txtCategoria" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Precio" GridPane.rowIndex="2" />
+            <TextField fx:id="txtPrecio" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Stock" GridPane.rowIndex="3" />
+            <TextField fx:id="txtStock" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        </children>
+    </GridPane>
+    <HBox alignment="CENTER" spacing="10">
+        <Button text="Guardar" onAction="#guardarProducto" />
+        <Button text="Actualizar" />
+        <Button text="Eliminar" />
+        <Button text="Limpiar" />
+    </HBox>
+    <TableView fx:id="tblProductos" prefHeight="200">
+        <columns>
+            <TableColumn fx:id="colNombre" text="Nombre" />
+            <TableColumn fx:id="colPrecio" text="Precio" />
+            <TableColumn fx:id="colStock" text="Stock" />
+        </columns>
+    </TableView>
+</VBox>

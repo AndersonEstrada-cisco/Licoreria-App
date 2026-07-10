@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.DonLiquox.licoreria.controller.LoginController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane fx:id="dashArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.DonLiquox.licoreria.controller.DashboardController">
+   <top>
+      <HBox styleClass="hbox" prefHeight="61.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Usuario:" />
+            <Label fx:id="lblUser" text="Label" />
+            <Label text="Rol:" />
+            <Label fx:id="lblRol" text="Label" />
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox styleClass="vbox" prefHeight="200.0" prefWidth="150.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnUsuarios" mnemonicParsing="false" onAction="#btnUsuarios" text="Usuarios" />
+            <Button fx:id="btnClientes" mnemonicParsing="false" onAction="#btnClientes" text="Clientes" />
+            <Button fx:id="btnVentas" mnemonicParsing="false" onAction="#btnVentas" text="Ventas" />
+            <Button fx:id="btnProductos" mnemonicParsing="false" onAction="#btnProductos" text="Productos" />
+            <Button fx:id="btnReportes" mnemonicParsing="false" onAction="#btnReportes" text="Reportes" />
+            <Button mnemonicParsing="false" onAction="#btnRegresar" text="Cerrar Sesion" styleClass="button-logout" />
+         </children>
+      </VBox>
+   </left>
+</BorderPane>

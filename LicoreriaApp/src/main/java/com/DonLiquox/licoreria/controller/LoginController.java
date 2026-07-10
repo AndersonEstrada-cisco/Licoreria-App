@@ -1,20 +1,18 @@
 package com.DonLiquox.licoreria.controller;
 
 import com.DonLiquox.licoreria.db.Conexion;
+import com.DonLiquox.licoreria.model.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.ParallelCamera;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class LoginController {
     @FXML
@@ -24,7 +22,7 @@ public class LoginController {
     @FXML
     private ComboBox<String> cmbRol;
 
-    public void btnIngresar() throws SQLException {
+    public void btnIngresar() {
         String user = txtUser.getText().trim();
         String clave = txtClave.getText().trim();
         String rolIngresado = cmbRol.getValue();
@@ -42,10 +40,23 @@ public class LoginController {
             if (rs.next()) {
                 String claveBD = rs.getString("clave");
                 String rol = rs.getString("rol");
-                if (clave.equals(claveBD) || rolIngresado.equals(rol)) {
-                    DashboardController c = new DashboardController();
-                    //c.cargarVista();
-                    //return;
+                if (clave.equals(claveBD) && rolIngresado.equals(rol)) {
+                    int id = rs.getInt("id_usuario");
+                    String nombre = rs.getString("nombre");
+                    String cedula = rs.getString("cedula");
+                    int edad = rs.getInt("edad");
+                    String correo = rs.getString("correo");
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/dashboard.fxml"));
+                    Parent root = loader.load();
+                    DashboardController dashc = loader.getController();
+
+                    Usuario u = new Usuario(id,nombre,cedula,edad,correo,claveBD,rol);
+                    dashc.mostrarUser(u);
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                    Stage loginStage = (Stage) txtUser.getScene().getWindow();
+                    loginStage.close();
                 } else {
                     throw new Exception("Datos no registrados");
                 }
@@ -57,6 +68,6 @@ public class LoginController {
         }
     }
     public void initialize(){
-        cmbRol.getItems().addAll("Administrador","Cajero","Cliente");
+        cmbRol.getItems().addAll("Administrador","Cajero","Reportes");
     }
 }

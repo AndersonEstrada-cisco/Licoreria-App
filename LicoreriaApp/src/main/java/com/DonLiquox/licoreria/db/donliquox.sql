@@ -5,7 +5,7 @@ CREATE TABLE usuarios (
       edad INT NOT NULL,
       correo VARCHAR(100) NOT NULL UNIQUE,
       clave VARCHAR(100) NOT NULL,
-      rol VARCHAR(20) NOT NULL CHECK (rol IN ('Administrador', 'Cajero'))
+      rol VARCHAR(20) NOT NULL CHECK (rol IN ('Administrador', 'Cajero', 'Reportes'))
 );
 
 CREATE TABLE clientes (

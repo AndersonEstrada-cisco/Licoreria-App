@@ -8,9 +8,9 @@
       <VBox layoutX="76.0" layoutY="33.0" prefHeight="298.0" prefWidth="198.0" spacing="10.0">
          <children>
             <Label text="Usuario" />
-            <TextField promptText="Ingrese su correo" />
+            <TextField fx:id="txtUser" promptText="Ingrese su correo" />
             <Label text="Contraseña" />
-            <PasswordField promptText="*******" />
+            <PasswordField fx:id="txtClave" promptText="*******" />
             <ComboBox fx:id="cmbRol" prefWidth="150.0" />
             <Button mnemonicParsing="false" onAction="#btnIngresar" text="Ingresar" />
          </children>
