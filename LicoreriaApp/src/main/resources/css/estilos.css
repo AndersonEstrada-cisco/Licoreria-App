@@ -1,0 +1,47 @@
+.root { -fx-font-family: 'Segoe UI'; }
+
+.titulo {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.input {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #bdc3c7;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-padding: 8;
+}
+
+.boton {
+    -fx-background-color: #2c3e50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 5 15 5 15;
+    -fx-cursor: hand;
+}
+.boton:hover { -fx-background-color: #1a252f; }
+
+.tabla { -fx-background-color: transparent; }
+.tabla .column-header-background { -fx-background-color: #2c3e50; }
+.tabla .column-header .label { -fx-text-fill: white; -fx-font-weight: bold; }
+.tabla .table-row-cell { -fx-background-color: #ffffff; }
+
+.dashboard-base { -fx-background-color: #2c3e50; }
+.lateral { -fx-background-color: #A9CCC0; }
+.btnlateral {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+}
+.btnlateral:hover { -fx-background-color: #9ab8ae; }
+.lblUser { -fx-text-fill: #FF792D; -fx-font-weight: bold; }
+
+.tema-productos { -fx-background-color: #ff6961; }
+.tema-clientes { -fx-background-color: #77dd77; }
+.tema-ventas { -fx-background-color: #BF95C7; }
+.tema-usuarios { -fx-background-color: #84b6f4; }
+.tema-reportes { -fx-background-color: #40D69D; }

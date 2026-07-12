@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="15" styleClass="tema-ventas" stylesheets="@../../../../css/estilos.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.DonLiquox.licoreria.controller.VentaController">
+
+    <Label styleClass="titulo" text="Registro de Ventas" />
+
+    <GridPane alignment="CENTER" hgap="15" vgap="15">
+        <columnConstraints>
+            <ColumnConstraints minWidth="80.0" />
+            <ColumnConstraints minWidth="200.0" />
+            <ColumnConstraints minWidth="80.0" />
+            <ColumnConstraints minWidth="200.0" />
+        </columnConstraints>
+        <children>
+            <Label style="-fx-text-fill: white;" text="Cliente" />
+            <ComboBox fx:id="cmbCliente" prefWidth="200.0" styleClass="input" GridPane.columnIndex="1" />
+
+            <Label style="-fx-text-fill: white;" text="Producto" GridPane.columnIndex="2" />
+            <ComboBox fx:id="cmbProducto" prefWidth="200.0" styleClass="input" GridPane.columnIndex="3" />
+
+            <Label style="-fx-text-fill: white;" text="Cantidad" GridPane.rowIndex="2" />
+            <TextField fx:id="txtCantidad" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <Button onAction="#btnAgregar" styleClass="boton" text="Agregar al Carrito" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+        </children>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+
+    <TableView fx:id="tblCarrito" prefHeight="200" prefWidth="600" styleClass="tabla">
+        <columns>
+            <TableColumn fx:id="colProd" prefWidth="200.0" text="Producto" />
+            <TableColumn fx:id="colCant" prefWidth="100.0" text="Cantidad" />
+            <TableColumn fx:id="colPrecio" prefWidth="100.0" text="Precio" />
+            <TableColumn fx:id="colSubtotal" prefWidth="100.0" text="Subtotal" />
+        </columns>
+    </TableView>
+
+    <HBox alignment="CENTER_RIGHT" spacing="20" style="-fx-padding: 0 50 0 0;">
+        <Label fx:id="lblTotal" text="Total: $0.00" />
+        <Button onAction="#btnComprar" styleClass="boton" text="Finalizar Venta" />
+    </HBox>
+
+</VBox>

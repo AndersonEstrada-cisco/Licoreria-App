@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -28,10 +29,9 @@ public class LoginController {
         String rolIngresado = cmbRol.getValue();
 
         if (user.isEmpty() || clave.isEmpty()) {
-            throw new IllegalArgumentException("Los campos no pueden estar vacíos");
+            new Alert(Alert.AlertType.WARNING, "Los campos no pueden estar").show();
         }
-        String sql = "SELECT clave, rol FROM usuarios WHERE correo = ?";
-
+        String sql = "SELECT id_usuario, nombre, cedula, edad, correo, clave, rol FROM usuarios WHERE correo = ?";
         try (Connection con = Conexion.getConneccion();
              PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1, user);
@@ -46,7 +46,7 @@ public class LoginController {
                     String cedula = rs.getString("cedula");
                     int edad = rs.getInt("edad");
                     String correo = rs.getString("correo");
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/dashboard.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/DonLiquox/licoreria/view/dashboard.fxml"));
                     Parent root = loader.load();
                     DashboardController dashc = loader.getController();
 
@@ -57,14 +57,12 @@ public class LoginController {
                     stage.show();
                     Stage loginStage = (Stage) txtUser.getScene().getWindow();
                     loginStage.close();
-                } else {
-                    throw new Exception("Datos no registrados");
                 }
             } else {
-                throw new Exception("Los datos estan mal ingresados");
+                new Alert(Alert.AlertType.WARNING, "El usuario y contraseña no es el correcto").show();
             }
         } catch (Exception e) {
-            throw new IllegalArgumentException("Error al ingresar: " + e.getMessage());
+            new Alert(Alert.AlertType.WARNING, "El usuario y contraseña no es el correcto").show();
         }
     }
     public void initialize(){

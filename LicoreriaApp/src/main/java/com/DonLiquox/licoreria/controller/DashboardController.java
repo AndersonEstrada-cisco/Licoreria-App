@@ -22,11 +22,16 @@ public class DashboardController {
 
     public void cargarVista(String fxml) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            String ruta = "/com/DonLiquox/licoreria/view/" + fxml;
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(ruta));
+            if (loader.getLocation() == null) {
+                throw new IOException("No se pudo encontrar el archivo FXML en: " + ruta);
+            }
             Parent vista = loader.load();
-            dashArea.getChildren().clear();
-            dashArea.getChildren().add(vista);
+            dashArea.setCenter(vista);
         } catch (IOException e) {
+            System.err.println("Error en la carga: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -45,7 +50,6 @@ public class DashboardController {
     public void cargarVentanaRol(String rol){
         switch (rol){
             case "Administrador":
-                cargarVista("Administrador.fxml");
                 break;
             case "Cajero":
                 ocultarbtn(btnUsuarios);
@@ -73,7 +77,7 @@ public class DashboardController {
     }
 
     @FXML public void btnClientes(){
-        cargarVista("Clientes.fxml");
+        cargarVista("Cliente.fxml");
     }
     @FXML public void btnVentas(){
         cargarVista("Ventas.fxml");

@@ -3,49 +3,60 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.DonLiquox.licoreria.controller.UsuarioController">
-    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Gestión de Usuarios" />
-   <GridPane>
-     <columnConstraints>
-       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-     </columnConstraints>
-     <rowConstraints>
-       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-     </rowConstraints>
-      <children>
-         <Label text="Nombre" />
-         <Label text="Cedula" GridPane.rowIndex="1" />
-         <Label text="Edad" GridPane.rowIndex="2" />
-         <Label text="Correo" GridPane.columnIndex="2" />
-         <Label text="Clave" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-         <Label text="Rol" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-         <TextField fx:id="txtNombre" GridPane.columnIndex="1" />
-         <TextField fx:id="txtCedula" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-         <TextField fx:id="txtEdad" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <TextField fx:id="txtCorreo" GridPane.columnIndex="3" />
-         <PasswordField fx:id="txtClave" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-         <ComboBox fx:id="cmbRol" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-      </children>
-   </GridPane>
+<VBox alignment="CENTER" spacing="15"
+      styleClass="root-color, tema-usuarios"
+      stylesheets="@../../../../css/estilos.css"
+      xmlns="http://javafx.com/javafx/17.0.12"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.DonLiquox.licoreria.controller.UsuarioController">
+
+    <Label styleClass="titulo" text="Gestión de Usuarios" />
+
+    <GridPane hgap="15" vgap="15" alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints minWidth="60.0" />
+            <ColumnConstraints minWidth="150.0" />
+            <ColumnConstraints minWidth="60.0" />
+            <ColumnConstraints minWidth="150.0" />
+        </columnConstraints>
+        <children>
+            <Label style="-fx-text-fill: white;" text="Nombre" />
+            <TextField fx:id="txtNombre" styleClass="input" GridPane.columnIndex="1" />
+
+            <Label style="-fx-text-fill: white;" text="Cédula" GridPane.rowIndex="1" />
+            <TextField fx:id="txtCedula" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label style="-fx-text-fill: white;" text="Edad" GridPane.rowIndex="2" />
+            <TextField fx:id="txtEdad" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <Label style="-fx-text-fill: white;" text="Correo" GridPane.columnIndex="2" />
+            <TextField fx:id="txtCorreo" styleClass="input" GridPane.columnIndex="3" />
+
+            <Label style="-fx-text-fill: white;" text="Clave" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <PasswordField fx:id="txtClave" styleClass="input" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+            <Label style="-fx-text-fill: white;" text="Rol" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <ComboBox fx:id="cmbRol" styleClass="input" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+        </children>
+    </GridPane>
+
     <HBox alignment="CENTER" spacing="10">
-        <Button onAction="#btnguardar" text="Guardar" />
-      <Button mnemonicParsing="false" onAction="#btnactualizar" text="Actualizar" />
-      <Button mnemonicParsing="false" onAction="#btnElmiinar" text="Eliminar" />
-      <Button mnemonicParsing="false" onAction="#btnLimpiar" text="Limpiar" />
+        <Button onAction="#btnguardar" styleClass="boton" text="Guardar" />
+        <Button onAction="#btnactualizar" styleClass="boton" text="Actualizar" />
+        <Button onAction="#btnElmiinar" styleClass="boton" text="Eliminar" />
+        <Button onAction="#btnBuscar" styleClass="boton" text="Buscar" />
+        <TextField fx:id="txtBuscar" styleClass="input" promptText="Buscar usuario..." />
     </HBox>
-    <TableView fx:id="tblUsuarios" prefHeight="200" prefWidth="400">
+
+    <TableView fx:id="tblUsuarios" prefHeight="200" prefWidth="600" styleClass="tabla">
         <columns>
-            <TableColumn fx:id="colNombre" text="Nombre" />
-            <TableColumn fx:id="colRol" text="Rol" />
-         <TableColumn fx:id="colCedula" prefWidth="75.0" text="Cedula" />
-         <TableColumn fx:id="colEdad" prefWidth="75.0" text="Edad" />
-         <TableColumn fx:id="colCorreo" prefWidth="75.0" text="Correo" />
-         <TableColumn fx:id="colClave" prefWidth="75.0" text="Clave" />
+            <TableColumn fx:id="colNombre" prefWidth="100.0" text="Nombre" />
+            <TableColumn fx:id="colRol" prefWidth="80.0" text="Rol" />
+            <TableColumn fx:id="colCedula" prefWidth="90.0" text="Cedula" />
+            <TableColumn fx:id="colEdad" prefWidth="50.0" text="Edad" />
+            <TableColumn fx:id="colCorreo" prefWidth="150.0" text="Correo" />
+            <TableColumn fx:id="colClave" prefWidth="75.0" text="Clave" />
         </columns>
     </TableView>
+
 </VBox>

@@ -2,15 +2,16 @@ package com.DonLiquox.licoreria.dao;
 
 import com.DonLiquox.licoreria.db.Conexion;
 import com.DonLiquox.licoreria.model.Producto;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class ProductoDAO implements ICRUD<Producto>{
-    private ArrayList<Producto> licores;
+    private ObservableList<Producto> licores = FXCollections.observableArrayList();
 
     @Override
     public void ingresar(Producto p) throws SQLException {
@@ -24,12 +25,13 @@ public class ProductoDAO implements ICRUD<Producto>{
             pr.setInt(4, p.getStock());
             pr.executeUpdate();
         }
+        mostrar();
     }
 
     @Override
     public void mostrar() throws SQLException {
         licores.clear();
-        String sql = "SELECTO * FROM productos";
+        String sql = "SELECT * FROM productos";
         try (Connection con = Conexion.getConneccion();
              PreparedStatement pr = con.prepareStatement(sql);
              ResultSet rs = pr.executeQuery()) {
@@ -49,7 +51,7 @@ public class ProductoDAO implements ICRUD<Producto>{
 
     @Override
     public void actualizar(Producto p) throws SQLException {
-        String sql ="UPDATE productos SET nombre = ? SET categoria = ? SET precio = ?, SET stock = ? WHERE id = ?";
+        String sql ="UPDATE productos SET nombre = ?,categoria = ?, precio = ?, stock = ? WHERE id_producto = ?";
         try (Connection con = Conexion.getConneccion();
              PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1,p.getNombre());
@@ -66,17 +68,18 @@ public class ProductoDAO implements ICRUD<Producto>{
 
     @Override
     public void eliminar(int id) throws SQLException {
-        String sql ="DELETE productos WHERE id = ?";
+        String sql ="DELETE FROM productos WHERE  id_producto= ?";
         try (Connection con = Conexion.getConneccion();
              PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setInt(1,id);
+            pr.executeUpdate();
             mostrar();
         }catch (Exception e){
             throw new SQLException("Error al eliminaren la base de datos");
         }
     }
 
-    public ArrayList<Producto> getLicores() {
+    public ObservableList<Producto> getLicores() {
         return licores;
     }
 }

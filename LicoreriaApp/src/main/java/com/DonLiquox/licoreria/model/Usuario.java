@@ -46,4 +46,12 @@ public class Usuario extends Persona {
         }
         this.rol = rol;
     }
+    @Override
+    public String getNombre() { return super.getNombre(); }
+
+    @Override
+    public String getCedula() { return super.getCedula(); }
+
+    @Override
+    public int getEdad() { return super.getEdad(); }
 }

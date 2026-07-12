@@ -1,30 +1,26 @@
 package com.DonLiquox.licoreria.model;
 
 public class DetalleVenta {
-    private int idDetalle;
-    private Producto producto;
+    private final int idDetalle;
+    private final Producto producto;
     private int cantidad;
     private double subtotal;
 
     public DetalleVenta(int idDetalle, Producto producto, int cantidad) {
+        if (producto == null) throw new IllegalArgumentException("Producto requerido");
         this.idDetalle = idDetalle;
-        setProducto(producto);
-        setCantidad(cantidad);
-        this.subtotal = producto.getPrecio() * cantidad;
-    }
-
-    public void setProducto(Producto producto) {
-        if (producto == null) {
-            throw new IllegalArgumentException("El producto no puede ser nulo");
-        }
         this.producto = producto;
+        setCantidad(cantidad);
     }
 
-    public void setCantidad(int cantidad) {
-        if (cantidad <= 0) {
-            throw new IllegalArgumentException("La cantidad debe ser mayor a cero");
-        }
+    public final void setCantidad(int cantidad) {
+        if (cantidad <= 0) throw new IllegalArgumentException("Cantidad debe ser > 0");
         this.cantidad = cantidad;
+        actualizarSubtotal();
+    }
+
+    private void actualizarSubtotal() {
+        this.subtotal = this.producto.getPrecio() * this.cantidad;
     }
 
     public int getIdDetalle() { return idDetalle; }
@@ -32,4 +28,3 @@ public class DetalleVenta {
     public int getCantidad() { return cantidad; }
     public double getSubtotal() { return subtotal; }
 }
-

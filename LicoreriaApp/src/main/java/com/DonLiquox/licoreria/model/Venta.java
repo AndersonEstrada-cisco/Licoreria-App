@@ -23,9 +23,7 @@ public class Venta {
 
     public void agregarDetalle(DetalleVenta detalle) {
         detalles.add(detalle);
-        total += detalle.getSubtotal();
     }
-
 
     public int getIdVenta() {
         return idVenta;
@@ -37,11 +35,15 @@ public class Venta {
         return cliente;
     }
     public double getTotal() {
-        return total;
+        return detalles.stream().mapToDouble(DetalleVenta::getSubtotal).sum();
     }
     public LocalDateTime getFecha() {
         return fecha;
     }
 
     public List<DetalleVenta> getDetalles() { return detalles; }
+
+    public int getIdCliente() {
+        return cliente.getId();
+    }
 }

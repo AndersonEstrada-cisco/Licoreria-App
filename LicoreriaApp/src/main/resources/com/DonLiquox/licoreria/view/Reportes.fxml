@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<VBox alignment="CENTER" spacing="15" styleClass="tema-reportes" stylesheets="@../../../../css/estilos.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.DonLiquox.licoreria.controller.ReportesController">
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" />
+    <Label styleClass="titulo" text="Centro de Reportes" />
+
+    <HBox alignment="CENTER" spacing="10">
+        <DatePicker fx:id="fecha" promptText="Seleccione Fecha" styleClass="input" />
+        <Button onAction="#generarReporte" styleClass="boton" text="Generar Datos" />
+        <Button onAction="#exportarCSV" styleClass="boton" text="Exportar a CSV" />
+    </HBox>
+
+    <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab text="Estadísticas Visuales">
+                <content>
+                    <PieChart fx:id="graficoVentas" title="Productos más vendidos" />
+                </content>
+            </Tab>
+
+            <Tab text="Detalle de Ventas">
+                <content>
+                    <TableView fx:id="tblReporte" styleClass="tabla">
+                        <columns>
+                            <TableColumn fx:id="colProducto" prefWidth="200.0" text="Producto" />
+                            <TableColumn fx:id="colCantidad" prefWidth="100.0" text="Cantidad" />
+                            <TableColumn fx:id="colTotal" prefWidth="100.0" text="Ingreso Total" />
+                        </columns>
+                    </TableView>
+                </content>
+            </Tab>
+        </tabs>
+    </TabPane>
+
+</VBox>

@@ -19,7 +19,7 @@ public abstract class Persona {
 
     public void setEdad(int edad) {
         if(edad < 18){
-            throw new IllegalArgumentException("Compra para mayores de 18 años");
+            throw new IllegalArgumentException("Registro para mayores de 18 años");
         }
         this.edad = edad;
     }
