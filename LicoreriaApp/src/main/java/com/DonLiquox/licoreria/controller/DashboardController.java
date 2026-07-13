@@ -4,6 +4,7 @@ import com.DonLiquox.licoreria.model.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -70,6 +71,21 @@ public class DashboardController {
     @FXML public void btnRegresar(){
         Stage stage = (Stage) lblUser.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML public void btnCerrarSesion(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/DonLiquox/licoreria/view/login.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("DonLiquox");
+            stage.setScene(new Scene(root));
+            stage.show();
+            Stage dashStage = (Stage) lblUser.getScene().getWindow();
+            dashStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML public void btnUsuarios() {

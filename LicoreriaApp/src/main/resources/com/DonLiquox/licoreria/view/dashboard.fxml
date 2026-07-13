@@ -26,6 +26,8 @@
             <Button fx:id="btnVentas" onAction="#btnVentas" prefWidth="180" styleClass="btnlateral" text="Ventas" />
             <Button fx:id="btnProductos" onAction="#btnProductos" prefWidth="180" styleClass="btnlateral" text="Productos" />
             <Button fx:id="btnReportes" onAction="#btnReportes" prefWidth="180" styleClass="btnlateral" text="Reportes" />
+            <Region VBox.vgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#btnCerrarSesion" prefWidth="180" text="Cerrar Sesión" />
          </children>
          <opaqueInsets>
             <Insets top="10.0" />

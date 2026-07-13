@@ -30,7 +30,14 @@ public class LoginController {
 
         if (user.isEmpty() || clave.isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Los campos no pueden estar").show();
+            return;
         }
+
+        if(cmbRol.getValue() == null) {
+            new Alert(Alert.AlertType.WARNING, "Debe seleccionar un rol").show();
+            return;
+        }
+
         String sql = "SELECT id_usuario, nombre, cedula, edad, correo, clave, rol FROM usuarios WHERE correo = ?";
         try (Connection con = Conexion.getConneccion();
              PreparedStatement pr = con.prepareStatement(sql)) {
@@ -50,17 +57,20 @@ public class LoginController {
                     Parent root = loader.load();
                     DashboardController dashc = loader.getController();
 
-                    Usuario u = new Usuario(id,nombre,cedula,edad,correo,claveBD,rol);
+                    Usuario u = new Usuario(id, nombre, cedula, edad, correo, claveBD, rol);
                     dashc.mostrarUser(u);
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
                     stage.show();
                     Stage loginStage = (Stage) txtUser.getScene().getWindow();
                     loginStage.close();
+                } else {
+                    new Alert(Alert.AlertType.WARNING, "La contraseña o el rol no son correctos").show();
                 }
             } else {
                 new Alert(Alert.AlertType.WARNING, "El usuario y contraseña no es el correcto").show();
             }
+
         } catch (Exception e) {
             new Alert(Alert.AlertType.WARNING, "El usuario y contraseña no es el correcto").show();
         }

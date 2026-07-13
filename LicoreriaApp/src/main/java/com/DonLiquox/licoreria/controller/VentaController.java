@@ -1,5 +1,7 @@
 package com.DonLiquox.licoreria.controller;
 
+import com.DonLiquox.licoreria.dao.ClienteDAO;
+import com.DonLiquox.licoreria.dao.ProductoDAO;
 import com.DonLiquox.licoreria.dao.VentasDAO;
 import com.DonLiquox.licoreria.model.*;
 import javafx.collections.FXCollections;
@@ -18,6 +20,8 @@ public class VentaController {
     @FXML private Label lblTotal;
 
     private VentasDAO ventasDAO = new VentasDAO();
+    private ClienteDAO clienteDAO = new ClienteDAO();
+    private ProductoDAO productoDAO = new ProductoDAO();
     private ObservableList<DetalleVenta> listaCarrito = FXCollections.observableArrayList();
     private Usuario usuarioActual;
 
@@ -30,6 +34,32 @@ public class VentaController {
         tblCarrito.setItems(listaCarrito);
         configurarComboBox(cmbCliente, "Cliente");
         configurarComboBox(cmbProducto, "Producto");
+        cargarClientes();
+        cargarProductos();
+    }
+
+    private void cargarClientes() {
+        try {
+            clienteDAO.mostrar();
+            ObservableList<Cliente> clientes = clienteDAO.getClientes();
+            Cliente consumidorFinal = new Cliente(0, "Consumidor Final", "9999999999", 25, "0000000000", "cf@cf.com", "Sin dirección");
+            clientes.add(0, consumidorFinal);
+            cmbCliente.setItems(clientes);
+            cmbCliente.getSelectionModel().selectFirst();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error al cargar clientes: " + e.getMessage());
+            alert.show();
+        }
+    }
+
+    private void cargarProductos() {
+        try {
+            productoDAO.mostrar();
+            cmbProducto.setItems(productoDAO.getLicores());
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error al cargar productos: " + e.getMessage());
+            alert.show();
+        }
     }
 
     @FXML
