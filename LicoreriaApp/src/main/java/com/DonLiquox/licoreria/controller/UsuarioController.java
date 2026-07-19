@@ -46,7 +46,7 @@ public class UsuarioController {
         try {
             usuarioDAO.mostrar();
             tblUsuarios.setItems(usuarioDAO.getUsuarios());
-        } catch (Exception e) { mostrarAlerta("Error al cargar: " + e.getMessage()); }
+        } catch (SQLException | NumberFormatException e) { mostrarAlerta("Error al cargar: " + e.getMessage()); }
     }
 
     @FXML
@@ -61,7 +61,7 @@ public class UsuarioController {
             Usuario u = new Usuario(0, nombre,cedula,edad,correo,clave,rol);
             usuarioDAO.ingresar(u);
             btnLimpiar();
-        } catch (Exception e) { mostrarAlerta(e.getMessage()); }
+        } catch (SQLException | NumberFormatException e) { mostrarAlerta("Error al guardar: " + e.getMessage()); }
     }
 
     @FXML
@@ -81,7 +81,7 @@ public class UsuarioController {
             Usuario u = new Usuario(userS.getId(), nombre,cedula,edad,correo,clave,rol);
             usuarioDAO.actualizar(u);
             btnLimpiar();
-        } catch (Exception e) { mostrarAlerta("Error al actualizar" + e.getMessage()); }
+        } catch (SQLException | NumberFormatException e) { mostrarAlerta("Error al actualizar: " + e.getMessage()); }
     }
 
     @FXML
@@ -100,7 +100,7 @@ public class UsuarioController {
                 usuarioDAO.eliminar(u.getId());
                 btnLimpiar();
             } catch (SQLException e) {
-                mostrarAlerta("No se pudo eliminar el al usuario: " + e.getMessage());
+                mostrarAlerta("No se pudo eliminar el usuario: " + e.getMessage());
             }
         }
     }

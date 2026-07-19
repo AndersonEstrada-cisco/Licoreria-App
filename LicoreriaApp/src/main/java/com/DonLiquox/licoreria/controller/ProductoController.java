@@ -47,7 +47,7 @@ public class ProductoController {
             mostrarAlerta("Error al cargar la tabla: " + e.getMessage());
         }
     }
-    public void btnGuardar() throws SQLException {
+    public void btnGuardar() {
         try {
             String nombre = txtNombre.getText();
             String categoria = txtCategoria.getText();
@@ -56,11 +56,11 @@ public class ProductoController {
             Producto p = new Producto(0, nombre, categoria, precio, stock);
             pro_db.ingresar(p);
             cargarTabla();
-        }catch (NumberFormatException e){
+        } catch (SQLException | NumberFormatException e) {
             mostrarAlerta("Los datos deben ser numericos");
         }
     }
-    public void btnActualizar() throws SQLException {
+    public void btnActualizar() {
         Producto p = tableproductos.getSelectionModel().getSelectedItem();
         if (p == null) {
             mostrarAlerta("Seleccione un producto de la tabla para actualizar.");
@@ -71,7 +71,7 @@ public class ProductoController {
             pro_db.actualizar(actu);
             cargarTabla();
             btnLimpiar();
-        }catch (IllegalArgumentException e){
+        } catch (SQLException | NumberFormatException e) {
             mostrarAlerta("No se pudo actualizar el producto");
         }
     }

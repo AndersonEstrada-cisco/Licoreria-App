@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.StringConverter;
 
+import java.sql.SQLException;
+
 public class VentaController {
 
     @FXML private ComboBox<Cliente> cmbCliente;
@@ -46,7 +48,7 @@ public class VentaController {
             clientes.add(0, consumidorFinal);
             cmbCliente.setItems(clientes);
             cmbCliente.getSelectionModel().selectFirst();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Error al cargar clientes: " + e.getMessage());
             alert.show();
         }
@@ -56,7 +58,7 @@ public class VentaController {
         try {
             productoDAO.mostrar();
             cmbProducto.setItems(productoDAO.getLicores());
-        } catch (Exception e) {
+        } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Error al cargar productos: " + e.getMessage());
             alert.show();
         }
@@ -86,7 +88,7 @@ public class VentaController {
             lblTotal.setText("Total: $0.00");
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Venta realizada con éxito");
             alert.show();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Error al guardar: " + e.getMessage());
             alert.show();
         }

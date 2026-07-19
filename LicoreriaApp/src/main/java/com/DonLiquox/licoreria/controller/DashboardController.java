@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -32,8 +33,8 @@ public class DashboardController {
             Parent vista = loader.load();
             dashArea.setCenter(vista);
         } catch (IOException e) {
-            System.err.println("Error en la carga: " + e.getMessage());
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error en la carga: " + e.getMessage());
+            alert.show();
         }
     }
     public void mostrarUser(Usuario u){
@@ -84,7 +85,8 @@ public class DashboardController {
             Stage dashStage = (Stage) lblUser.getScene().getWindow();
             dashStage.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error al cerrar sesión: " + e.getMessage());
+            alert.show();
         }
     }
 

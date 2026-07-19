@@ -44,8 +44,10 @@ public class VentasDAO {
             con.rollback();
             throw e;
         } finally {
-            con.setAutoCommit(true);
-            con.close();
+            if (con != null) {
+                con.setAutoCommit(true);
+                con.close();
+            }
         }
     }
 }

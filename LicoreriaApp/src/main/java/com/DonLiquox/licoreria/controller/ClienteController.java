@@ -60,8 +60,8 @@ public class ClienteController {
             clienteDAO.ingresar(c);
             cargarTabla();
             btnLimpiar();
-        } catch (Exception e) {
-            mostrarAlerta("Error: Verifique que la edad sea numérica y campos no vacíos.");
+        } catch (SQLException | NumberFormatException e) {
+            mostrarAlerta("Verifique que la edad sea numérica y campos no vacíos");
         }
     }
 
@@ -83,7 +83,8 @@ public class ClienteController {
             clienteDAO.actualizar(c);
             cargarTabla();
             btnLimpiar();
-        } catch (Exception e) { mostrarAlerta("Error al actualizar: " + e.getMessage());
+        } catch (SQLException | NumberFormatException e) {
+            mostrarAlerta("Error al actualizar: " + e.getMessage());
         }
     }
 
@@ -103,7 +104,7 @@ public class ClienteController {
                 clienteDAO.eliminar(c.getId());
                 btnLimpiar();
             } catch (SQLException e) {
-                mostrarAlerta("No se pudo eliminar el producto: " + e.getMessage());
+                mostrarAlerta("No se pudo eliminar el cliente: " + e.getMessage());
             }
         }
     }

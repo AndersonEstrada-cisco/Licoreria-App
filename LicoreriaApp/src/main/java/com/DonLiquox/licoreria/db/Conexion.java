@@ -12,7 +12,7 @@ public class Conexion {
         try{
             return DriverManager.getConnection(url,user,clave);
         } catch (SQLException e) {
-            throw new SQLException("No se pudo conectar a la base de datos" + e.getMessage());
+            throw new SQLException("No se pudo conectar a la base de datos: " + e.getMessage());
         }
     }
 
