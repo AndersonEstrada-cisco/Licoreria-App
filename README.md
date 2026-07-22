@@ -47,6 +47,12 @@ El código fuente se encuentra modularizado bajo una estructura limpia de paquet
 
 ---
 
+## Documentos del trabajo
+
+En la carpeta "Documetacion" se encuetra el informe, manual y video del proyecto.
+
+---
+
 ##  Instalación y Ejecución
 
 ### Opción 1: Usando el Instalador Nativo (.exe)
