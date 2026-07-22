@@ -24,9 +24,9 @@ public class ReportesController {
 
     @FXML
     public void initialize() {
-        colProducto.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        colCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
-        colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+        colProducto.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getNombre()));
+        colCantidad.setCellValueFactory(data -> new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getCantidad()));
+        colTotal.setCellValueFactory(data -> new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getTotal()));
     }
 
     @FXML
