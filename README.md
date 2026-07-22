@@ -1,6 +1,8 @@
-# 🍷 Don Liquox - Sistema de Gestión para Licorería
+#  Don Liquox - Sistema de Gestión para Licorería
 
 Proyecto académico - Chasi Alexis &amp; Estrada Anderson
+
+
 Aplicación de escritorio desarrollada en **Java** y **JavaFX** bajo el patrón arquitectónico **MVC (Modelo-Vista-Controlador)**, diseñada para optimizar y automatizar el control de inventarios, la gestión de clientes y usuarios, las transacciones comerciales y la generación de reportes analíticos para una establecimiento comercial. La persistencia de los datos se gestiona mediante una base de datos relacional en **PostgreSQL** alojada en la nube con **Neon**.
 
 ---
@@ -47,10 +49,11 @@ El código fuente se encuentra modularizado bajo una estructura limpia de paquet
 
 ##  Instalación y Ejecución
 
-### Opción 1: Usando el Instalador Nativo (`.exe`)
-1. Descarga el archivo instalador oficial `LicoreriaApp-1.0-SNAPSHOT.exe` desde la sección de entregas o releases del repositorio.
-2. Ejecuta el archivo y sigue las instrucciones del asistente de instalación en Windows.
-3. Abre la aplicación desde el acceso directo generado en el escritorio.
+### Opción 1: Usando el Instalador Nativo (.exe)
+1. Descarga el archivo instalador oficial `LicoreriaApp-1.0.0.exe` que se encuentra en LicoreriaApp/src/main/java/com/DonLiquox/licoreria/dist.
+2. Ejecuta el archivo y se crara el directorio con la app.
+3. Busca C:\Program Files\DonLiquox en buscador de Windows.
+4. Abre la aplicación.
 
 ### Opción 2: Ejecución desde el Código Fuente (Desarrollo)
 1. Clona este repositorio:
