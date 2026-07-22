@@ -3,60 +3,56 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" spacing="15" styleClass="tema-clientes" stylesheets="@../../../../css/estilos.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.DonLiquox.licoreria.controller.ClienteController">
+<VBox spacing="10" prefWidth="700" prefHeight="500" style="-fx-padding: 15; -fx-background-color: #77dd77;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.DonLiquox.licoreria.controller.ClienteController">
 
-    <Label styleClass="titulo" text="Gestión de Clientes" />
+    <Label styleClass="titulo" text="Gestion de Clientes" />
 
-    <GridPane alignment="CENTER" hgap="15" vgap="15">
+    <GridPane hgap="10" vgap="8">
         <columnConstraints>
-            <ColumnConstraints minWidth="80.0" />
-            <ColumnConstraints minWidth="150.0" />
-            <ColumnConstraints minWidth="80.0" />
-            <ColumnConstraints minWidth="150.0" />
+            <ColumnConstraints minWidth="70" prefWidth="70" />
+            <ColumnConstraints minWidth="160" prefWidth="160" />
+            <ColumnConstraints minWidth="70" prefWidth="70" />
+            <ColumnConstraints minWidth="160" prefWidth="160" />
         </columnConstraints>
         <children>
-            <Label style="-fx-text-fill: white;" text="Nombre" />
-            <TextField fx:id="txtNombre" styleClass="input" GridPane.columnIndex="1" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Nombre" />
+            <TextField fx:id="txtNombre" styleClass="input" prefWidth="160" GridPane.columnIndex="1" />
 
-            <Label style="-fx-text-fill: white;" text="Cédula" GridPane.rowIndex="1" />
-            <TextField fx:id="txtCedula" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Cedula" GridPane.rowIndex="1" />
+            <TextField fx:id="txtCedula" styleClass="input" prefWidth="160" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-            <Label style="-fx-text-fill: white;" text="Teléfono" GridPane.columnIndex="2" />
-            <TextField fx:id="txtTelefono" styleClass="input" GridPane.columnIndex="3" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Edad" GridPane.rowIndex="2" />
+            <TextField fx:id="txtEdad" styleClass="input" prefWidth="160" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-            <Label style="-fx-text-fill: white;" text="Email" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="txtEmail" styleClass="input" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Telefono" GridPane.columnIndex="2" />
+            <TextField fx:id="txtTelefono" styleClass="input" prefWidth="160" GridPane.columnIndex="3" />
 
-            <Label style="-fx-text-fill: white;" text="Dirección" GridPane.rowIndex="2" />
-            <TextField fx:id="txtDireccion" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Email" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="txtEmail" styleClass="input" prefWidth="160" GridPane.columnIndex="3" GridPane.rowIndex="1" />
 
-            <Label style="-fx-text-fill: white;" text="Edad" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField fx:id="txtEdad" styleClass="input" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Direccion" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="txtDireccion" styleClass="input" prefWidth="160" GridPane.columnIndex="3" GridPane.rowIndex="2" />
         </children>
-      <rowConstraints>
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-      </rowConstraints>
     </GridPane>
 
-    <HBox alignment="CENTER" spacing="10">
+    <HBox spacing="8" alignment="CENTER_LEFT">
         <Button onAction="#btnGuardar" styleClass="boton" text="Guardar" />
         <Button onAction="#btnActualizar" styleClass="boton" text="Actualizar" />
         <Button onAction="#btnEliminar" styleClass="boton" text="Eliminar" />
+        <Button onAction="#btnLimpiar" styleClass="boton" text="Limpiar" />
+        <TextField fx:id="txtBuscar" styleClass="input" promptText="Buscar cliente..." prefWidth="180" />
         <Button onAction="#btnBuscar" styleClass="boton" text="Buscar" />
-        <TextField fx:id="txtBuscar" promptText="Buscar..." styleClass="input" />
     </HBox>
 
-    <TableView fx:id="tblClientes" prefHeight="200" styleClass="tabla">
+    <TableView fx:id="tblClientes" styleClass="tabla" prefHeight="250" prefWidth="660">
         <columns>
-            <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
-            <TableColumn fx:id="colNombre" prefWidth="120.0" text="Nombre" />
-            <TableColumn fx:id="colCedula" prefWidth="100.0" text="Cédula" />
-            <TableColumn fx:id="colEdad" prefWidth="60.0" text="Edad" />
-            <TableColumn fx:id="colTelefono" prefWidth="100.0" text="Teléfono" />
-            <TableColumn fx:id="colEmail" prefWidth="120.0" text="Email" />
-            <TableColumn fx:id="colDireccion" prefWidth="100.0" text="Dirección" />
+            <TableColumn fx:id="colId" prefWidth="40" text="ID" />
+            <TableColumn fx:id="colNombre" prefWidth="110" text="Nombre" />
+            <TableColumn fx:id="colCedula" prefWidth="100" text="Cedula" />
+            <TableColumn fx:id="colEdad" prefWidth="50" text="Edad" />
+            <TableColumn fx:id="colTelefono" prefWidth="100" text="Telefono" />
+            <TableColumn fx:id="colEmail" prefWidth="140" text="Email" />
+            <TableColumn fx:id="colDireccion" prefWidth="120" text="Direccion" />
         </columns>
     </TableView>
 

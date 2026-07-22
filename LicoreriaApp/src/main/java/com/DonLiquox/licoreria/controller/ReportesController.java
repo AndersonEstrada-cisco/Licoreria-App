@@ -7,8 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import java.io.PrintWriter;
+import javafx.stage.FileChooser;
 import java.io.File;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 public class ReportesController {
@@ -47,14 +48,26 @@ public class ReportesController {
     }
     @FXML
     public void exportarCSV() {
-        try (PrintWriter writer = new PrintWriter(new File("reporte.csv"))) {
+        if (tblReporte.getItems().isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "No hay datos para exportar").show();
+            return;
+        }
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Guardar reporte");
+        fileChooser.setInitialFileName("reporte.csv");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos CSV", "*.csv"));
+        File archivo = fileChooser.showSaveDialog(tblReporte.getScene().getWindow());
+        if (archivo == null) {
+            return;
+        }
+        try (PrintWriter writer = new PrintWriter(archivo)) {
             writer.println("Producto,Cantidad,Total");
             for (ReporteProducto r : tblReporte.getItems()) {
                 writer.println(r.getNombre() + "," + r.getCantidad() + "," + r.getTotal());
             }
-            new Alert(Alert.AlertType.INFORMATION, "Exportado a reporte.csv").show();
+            new Alert(Alert.AlertType.INFORMATION, "Reporte exportado correctamente").show();
         } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR, "Error al exportar").show();
+            new Alert(Alert.AlertType.ERROR, "Error al exportar el archivo").show();
         }
     }
 }

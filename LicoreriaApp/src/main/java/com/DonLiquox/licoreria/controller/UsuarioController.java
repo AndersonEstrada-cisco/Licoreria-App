@@ -2,6 +2,8 @@ package com.DonLiquox.licoreria.controller;
 
 import com.DonLiquox.licoreria.dao.UsuarioDAO;
 import com.DonLiquox.licoreria.model.Usuario;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -10,6 +12,7 @@ import java.sql.SQLException;
 
 public class UsuarioController {
     @FXML private TextField txtNombre, txtCedula, txtEdad, txtCorreo;
+    @FXML private TextField txtBuscar;
     @FXML private PasswordField txtClave;
     @FXML private ComboBox<String> cmbRol;
     @FXML private TableView<Usuario> tblUsuarios;
@@ -17,6 +20,7 @@ public class UsuarioController {
     @FXML private TableColumn<Usuario, Integer> colEdad;
 
     private UsuarioDAO usuarioDAO = new UsuarioDAO();
+    private ObservableList<Usuario> todosUsuarios = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -45,50 +49,138 @@ public class UsuarioController {
     private void cargarTabla() {
         try {
             usuarioDAO.mostrar();
-            tblUsuarios.setItems(usuarioDAO.getUsuarios());
+            todosUsuarios.clear();
+            todosUsuarios.addAll(usuarioDAO.getUsuarios());
+            tblUsuarios.setItems(todosUsuarios);
         } catch (SQLException | NumberFormatException e) { mostrarAlerta("Error al cargar: " + e.getMessage()); }
     }
 
     @FXML
-    public void btnguardar() {
-        try {
-            String nombre = txtNombre.getText();
-            String cedula = txtCedula.getText();
-            int edad = Integer.parseInt(txtEdad.getText());
-            String correo = txtCorreo.getText();
-            String clave = txtClave.getText();
-            String rol = cmbRol.getValue();
-            Usuario u = new Usuario(0, nombre,cedula,edad,correo,clave,rol);
-            usuarioDAO.ingresar(u);
-            btnLimpiar();
-        } catch (SQLException | NumberFormatException e) { mostrarAlerta("Error al guardar: " + e.getMessage()); }
-    }
-
-    @FXML
-    public void btnactualizar() {
-        Usuario userS = tblUsuarios.getSelectionModel().getSelectedItem();
-        if (userS == null){
-            mostrarAlerta("Seleccione un elemento");
+    public void btnGuardar() {
+        if (txtNombre.getText().trim().isEmpty()) {
+            mostrarAlerta("Ingrese el nombre del usuario");
             return;
         }
+        if (txtCedula.getText().trim().isEmpty()) {
+            mostrarAlerta("Ingrese la cedula del usuario");
+            return;
+        }
+        if (txtEdad.getText().trim().isEmpty()) {
+            mostrarAlerta("Ingrese la edad del usuario");
+            return;
+        }
+        if (txtCorreo.getText().trim().isEmpty()) {
+            mostrarAlerta("Ingrese el correo del usuario");
+            return;
+        }
+        if (txtClave.getText().trim().isEmpty()) {
+            mostrarAlerta("Ingrese la contraseña del usuario");
+            return;
+        }
+        if (cmbRol.getValue() == null) {
+            mostrarAlerta("Seleccione un rol");
+            return;
+        }
+        String nombre = txtNombre.getText();
+        String cedula = txtCedula.getText();
+        int edad;
         try {
-            String nombre = txtNombre.getText();
-            String cedula = txtCedula.getText();
-            int edad = Integer.parseInt(txtEdad.getText());
-            String correo = txtCorreo.getText();
-            String clave = txtClave.getText();
-            String rol = cmbRol.getValue();
-            Usuario u = new Usuario(userS.getId(), nombre,cedula,edad,correo,clave,rol);
-            usuarioDAO.actualizar(u);
+            edad = Integer.parseInt(txtEdad.getText());
+        } catch (NumberFormatException e) {
+            mostrarAlerta("La edad debe ser un numero entero");
+            return;
+        }
+        String correo = txtCorreo.getText();
+        String clave = txtClave.getText();
+        String rol = cmbRol.getValue();
+        try {
+            if (usuarioDAO.existeCedula(cedula)) {
+                mostrarAlerta("Ya existe un usuario con esa cedula");
+                return;
+            }
+            if (usuarioDAO.existeCorreo(correo)) {
+                mostrarAlerta("Ya existe un usuario con ese correo");
+                return;
+            }
+            Usuario u = new Usuario(0, nombre, cedula, edad, correo, clave, rol);
+            usuarioDAO.ingresar(u);
+            cargarTabla();
             btnLimpiar();
-        } catch (SQLException | NumberFormatException e) { mostrarAlerta("Error al actualizar: " + e.getMessage()); }
+        } catch (IllegalArgumentException e) {
+            mostrarAlerta(e.getMessage());
+        } catch (SQLException e) {
+            mostrarAlerta("Error al guardar: " + e.getMessage());
+        }
     }
 
     @FXML
-    public void btnElmiinar() {
+    public void btnActualizar() {
+        Usuario userS = tblUsuarios.getSelectionModel().getSelectedItem();
+        if (userS == null) {
+            mostrarAlerta("Seleccione un usuario de la tabla");
+            return;
+        }
+        if (txtNombre.getText().trim().isEmpty()) {
+            mostrarAlerta("Ingrese el nombre del usuario");
+            return;
+        }
+        if (txtCedula.getText().trim().isEmpty()) {
+            mostrarAlerta("Ingrese la cedula del usuario");
+            return;
+        }
+        if (txtEdad.getText().trim().isEmpty()) {
+            mostrarAlerta("Ingrese la edad del usuario");
+            return;
+        }
+        if (txtCorreo.getText().trim().isEmpty()) {
+            mostrarAlerta("Ingrese el correo del usuario");
+            return;
+        }
+        if (txtClave.getText().trim().isEmpty()) {
+            mostrarAlerta("Ingrese la contraseña del usuario");
+            return;
+        }
+        if (cmbRol.getValue() == null) {
+            mostrarAlerta("Seleccione un rol");
+            return;
+        }
+        String nombre = txtNombre.getText();
+        String cedula = txtCedula.getText();
+        int edad;
+        try {
+            edad = Integer.parseInt(txtEdad.getText());
+        } catch (NumberFormatException e) {
+            mostrarAlerta("La edad debe ser un numero entero");
+            return;
+        }
+        String correo = txtCorreo.getText();
+        String clave = txtClave.getText();
+        String rol = cmbRol.getValue();
+        try {
+            if (usuarioDAO.existeCedula(cedula, userS.getId())) {
+                mostrarAlerta("Ya existe otro usuario con esa cedula");
+                return;
+            }
+            if (usuarioDAO.existeCorreo(correo, userS.getId())) {
+                mostrarAlerta("Ya existe otro usuario con ese correo");
+                return;
+            }
+            Usuario u = new Usuario(userS.getId(), nombre, cedula, edad, correo, clave, rol);
+            usuarioDAO.actualizar(u);
+            cargarTabla();
+            btnLimpiar();
+        } catch (IllegalArgumentException e) {
+            mostrarAlerta(e.getMessage());
+        } catch (SQLException e) {
+            mostrarAlerta("Error al actualizar: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    public void btnEliminar() {
         Usuario u = tblUsuarios.getSelectionModel().getSelectedItem();
         if (u == null) {
-            mostrarAlerta("Seleccione un producto de la tabla para eliminar.");
+            mostrarAlerta("Seleccione un usuario de la tabla");
             return;
         }
         Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
@@ -97,7 +189,12 @@ public class UsuarioController {
 
         if (confirmacion.showAndWait().get() == javafx.scene.control.ButtonType.OK) {
             try {
+                if (usuarioDAO.tieneVentas(u.getId())) {
+                    mostrarAlerta("Este usuario tiene ventas registradas, no se puede eliminar");
+                    return;
+                }
                 usuarioDAO.eliminar(u.getId());
+                cargarTabla();
                 btnLimpiar();
             } catch (SQLException e) {
                 mostrarAlerta("No se pudo eliminar el usuario: " + e.getMessage());
@@ -112,13 +209,27 @@ public class UsuarioController {
         txtCorreo.clear();
         txtClave.clear();
         cmbRol.getSelectionModel().clearSelection();
+        txtBuscar.clear();
+        tblUsuarios.setItems(todosUsuarios);
     }
     @FXML
     public void btnBuscar(){
-
+        String texto = txtBuscar.getText().trim().toLowerCase();
+        if (texto.isEmpty()) {
+            tblUsuarios.setItems(todosUsuarios);
+            return;
+        }
+        ObservableList<Usuario> filtrados = FXCollections.observableArrayList();
+        for (Usuario u : todosUsuarios) {
+            if (u.getNombre().toLowerCase().contains(texto) || u.getCorreo().toLowerCase().contains(texto)) {
+                filtrados.add(u);
+            }
+        }
+        tblUsuarios.setItems(filtrados);
     }
     public void mostrarAlerta(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setContentText(msg); alert.show();
+        alert.setContentText(msg);
+        alert.show();
     }
 }

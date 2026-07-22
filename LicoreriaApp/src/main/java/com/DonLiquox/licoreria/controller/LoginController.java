@@ -28,18 +28,26 @@ public class LoginController {
         String clave = txtClave.getText().trim();
         String rolIngresado = cmbRol.getValue();
 
-        if (user.isEmpty() || clave.isEmpty()) {
-            new Alert(Alert.AlertType.WARNING, "Los campos no pueden estar").show();
+        if (user.isEmpty() && clave.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Ingrese su correo y contraseña").show();
+            return;
+        }
+        if (user.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Ingrese su correo electrónico").show();
+            return;
+        }
+        if (clave.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Ingrese su contraseña").show();
             return;
         }
 
         if(cmbRol.getValue() == null) {
-            new Alert(Alert.AlertType.WARNING, "Debe seleccionar un rol").show();
+            new Alert(Alert.AlertType.WARNING, "Seleccione un rol").show();
             return;
         }
 
         String sql = "SELECT id_usuario, nombre, cedula, edad, correo, clave, rol FROM usuarios WHERE correo = ?";
-        try (Connection con = Conexion.getConneccion();
+        try (Connection con = Conexion.getConexion();
              PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1, user);
             ResultSet rs = pr.executeQuery();
@@ -65,14 +73,14 @@ public class LoginController {
                     Stage loginStage = (Stage) txtUser.getScene().getWindow();
                     loginStage.close();
                 } else {
-                    new Alert(Alert.AlertType.WARNING, "La contraseña o el rol no son correctos").show();
+                    new Alert(Alert.AlertType.WARNING, "Correo, contraseña o Rol incorrectos").show();
                 }
             } else {
-                new Alert(Alert.AlertType.WARNING, "El usuario y contraseña no es el correcto").show();
+                new Alert(Alert.AlertType.WARNING, "Correo o contraseña incorrectos").show();
             }
 
         } catch (Exception e) {
-            new Alert(Alert.AlertType.WARNING, "El usuario y contraseña no es el correcto").show();
+            new Alert(Alert.AlertType.ERROR, "Error: " + e.getMessage()).show();
         }
     }
     public void initialize(){

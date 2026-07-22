@@ -41,8 +41,26 @@ CREATE TABLE detalle_venta (
    cantidad INT NOT NULL CHECK (cantidad > 0),
    subtotal NUMERIC(10,2) NOT NULL
 );
-INSERT INTO  usuarios(nombre, cedula, edad, correo, clave, rol)
-VALUES ('admin', '000000000', '0', 'admin', 'admin', 'Administrador');
 
-INSERT INTO usuarios(nombre, cedula, edad, correo, clave, rol)
-VALUES ('alexis', '0202659272', 19, 'alexis@gmail.com', 'alex15', 'Administrador');
+
+INSERT INTO usuarios (nombre, cedula, edad, correo, clave, rol) VALUES
+    ('admin', '0101010101', 25, 'admin@admin.com', 'admin123', 'Administrador'),
+    ('reporte', '1111111111', 18, 'reportes@reportes.com', 'reportes123', 'Reportes'),
+    ('cajero', '0000000000', 18, 'cajero@cajero.com', 'cajero123', 'Cajero');
+
+INSERT INTO productos (nombre, categoria, precio, stock) VALUES
+    ('Zhumir Seco 750ml', 'Aguardiente', 8.50, 50),
+    ('Zhumir Naranja 750ml', 'Aguardiente', 8.75, 40),
+    ('Trópico Seco 750ml', 'Aguardiente', 7.90, 45),
+    ('Ron San Miguel Añejo 750ml', 'Ron', 12.00, 35),
+    ('Whisky Old Times 750ml', 'Whisky', 9.80, 20),
+    ('Cerveza Pilsener 355ml', 'Cerveza', 1.10, 200),
+    ('Cerveza Club Verde 355ml', 'Cerveza', 1.15, 180),
+('Pájaro Azul 750ml', 'Aguardiente', 7.20, 40);
+
+INSERT INTO clientes (nombre, cedula, edad, telefono, email, direccion)
+VALUES ('Consumidor Final', '9999999999', 25, '0000000000', 'cf@cf.com', 'Sin direccion');
+
+/* BORRO TODA LA INFO de las tablas
+TRUNCATE TABLE detalle_venta, ventas, clientes, productos, RESTART IDENTITY CASCADE;
+*/

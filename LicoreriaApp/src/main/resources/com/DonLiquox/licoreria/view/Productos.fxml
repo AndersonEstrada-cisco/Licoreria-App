@@ -3,51 +3,48 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" spacing="15" styleClass="tema-productos" stylesheets="@../../../../css/estilos.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.DonLiquox.licoreria.controller.ProductoController">
+<VBox spacing="10" prefWidth="700" prefHeight="500" style="-fx-padding: 15; -fx-background-color: #ff6961;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.DonLiquox.licoreria.controller.ProductoController">
 
     <Label styleClass="titulo" text="Inventario de Productos" />
 
-    <GridPane alignment="CENTER" hgap="10" vgap="10">
+    <GridPane hgap="10" vgap="8">
         <columnConstraints>
-            <ColumnConstraints minWidth="80.0" />
-            <ColumnConstraints minWidth="150.0" />
+            <ColumnConstraints minWidth="80" prefWidth="80" />
+            <ColumnConstraints minWidth="170" prefWidth="170" />
+            <ColumnConstraints minWidth="80" prefWidth="80" />
+            <ColumnConstraints minWidth="100" prefWidth="100" />
         </columnConstraints>
         <children>
-            <Label style="-fx-text-fill: white;" text="Nombre" />
-            <TextField fx:id="txtNombre" styleClass="input" GridPane.columnIndex="1" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Nombre" />
+            <TextField fx:id="txtNombre" styleClass="input" prefWidth="170" GridPane.columnIndex="1" />
 
-            <Label style="-fx-text-fill: white;" text="Categoría" GridPane.rowIndex="1" />
-            <TextField fx:id="txtCategoria" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Categoria" GridPane.rowIndex="1" />
+            <TextField fx:id="txtCategoria" styleClass="input" prefWidth="170" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-            <Label style="-fx-text-fill: white;" text="Precio" GridPane.rowIndex="2" />
-            <TextField fx:id="txtPrecio" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Precio" GridPane.columnIndex="2" />
+            <TextField fx:id="txtPrecio" styleClass="input" prefWidth="100" GridPane.columnIndex="3" />
 
-            <Label style="-fx-text-fill: white;" text="Stock" GridPane.rowIndex="3" />
-            <TextField fx:id="txtStock" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Stock" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="txtStock" styleClass="input" prefWidth="100" GridPane.columnIndex="3" GridPane.rowIndex="1" />
         </children>
-      <rowConstraints>
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-      </rowConstraints>
     </GridPane>
 
-    <HBox alignment="CENTER" spacing="10">
+    <HBox spacing="8" alignment="CENTER_LEFT">
         <Button onAction="#btnGuardar" styleClass="boton" text="Guardar" />
         <Button onAction="#btnActualizar" styleClass="boton" text="Actualizar" />
         <Button onAction="#btnEliminar" styleClass="boton" text="Eliminar" />
-        <Button onAction="#btnLimpiar" styleClass="boton" text="Buscar" />
-        <TextField fx:id="txtBuscar" promptText="Buscar..." styleClass="input" />
+        <Button onAction="#btnLimpiar" styleClass="boton" text="Limpiar" />
+        <TextField fx:id="txtBuscar" styleClass="input" promptText="Buscar producto..." prefWidth="180" />
+        <Button onAction="#btnBuscar" styleClass="boton" text="Buscar" />
     </HBox>
 
-    <TableView fx:id="tableproductos" prefHeight="200" styleClass="tabla">
+    <TableView fx:id="tableproductos" styleClass="tabla" prefHeight="250" prefWidth="660">
         <columns>
-            <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
-            <TableColumn fx:id="colNombre" prefWidth="150.0" text="Nombre" />
-            <TableColumn fx:id="colCategoria" prefWidth="100.0" text="Categoría" />
-            <TableColumn fx:id="colPrecio" prefWidth="75.0" text="Precio" />
-            <TableColumn fx:id="colStock" prefWidth="75.0" text="Stock" />
+            <TableColumn fx:id="colId" prefWidth="40" text="ID" />
+            <TableColumn fx:id="colNombre" prefWidth="180" text="Nombre" />
+            <TableColumn fx:id="colCategoria" prefWidth="130" text="Categoria" />
+            <TableColumn fx:id="colPrecio" prefWidth="90" text="Precio" />
+            <TableColumn fx:id="colStock" prefWidth="70" text="Stock" />
         </columns>
     </TableView>
 

@@ -15,7 +15,7 @@ public class ClienteDAO implements ICRUD<Cliente> {
     @Override
     public void ingresar(Cliente c) throws SQLException {
         String sql = "INSERT INTO clientes (nombre, cedula, edad, telefono, email, direccion) VALUES (?,?,?,?,?,?)";
-        try (Connection con = Conexion.getConneccion(); PreparedStatement pr = con.prepareStatement(sql)) {
+        try (Connection con = Conexion.getConexion(); PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1, c.getNombre());
             pr.setString(2, c.getCedula());
             pr.setInt(3, c.getEdad());
@@ -29,27 +29,29 @@ public class ClienteDAO implements ICRUD<Cliente> {
 
     @Override
     public void mostrar() throws SQLException {
+        clientes.clear();
         String sql = "SELECT * FROM clientes";
-        Connection con = Conexion.getConneccion();
-        PreparedStatement pr = con.prepareStatement(sql);
-        ResultSet rs = pr.executeQuery();
-        while (rs.next()){
-            int id = rs.getInt("id_cliente");
-            String nombre = rs.getString("nombre");
-            String cedula = rs.getString("cedula");
-            int edad = rs.getInt("edad");
-            String telefono = rs.getString("telefono");
-            String email = rs.getString("email");
-            String direccion = rs.getString("direccion");
-            Cliente c = new Cliente(id,nombre,cedula,edad,telefono,email,direccion);
-            clientes.add(c);
+        try (Connection con = Conexion.getConexion();
+             PreparedStatement pr = con.prepareStatement(sql);
+             ResultSet rs = pr.executeQuery()) {
+            while (rs.next()) {
+                int id = rs.getInt("id_cliente");
+                String nombre = rs.getString("nombre");
+                String cedula = rs.getString("cedula");
+                int edad = rs.getInt("edad");
+                String telefono = rs.getString("telefono");
+                String email = rs.getString("email");
+                String direccion = rs.getString("direccion");
+                Cliente c = new Cliente(id, nombre, cedula, edad, telefono, email, direccion);
+                clientes.add(c);
+            }
         }
     }
 
     @Override
     public void actualizar(Cliente c) throws SQLException {
         String sql = "UPDATE clientes SET nombre=?, cedula=?, edad=?, telefono=?, email=?, direccion=? WHERE id_cliente=?";
-        try (Connection con = Conexion.getConneccion(); PreparedStatement pr = con.prepareStatement(sql)) {
+        try (Connection con = Conexion.getConexion(); PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1, c.getNombre());
             pr.setString(2, c.getCedula());
             pr.setInt(3, c.getEdad());
@@ -65,7 +67,7 @@ public class ClienteDAO implements ICRUD<Cliente> {
     @Override
     public void eliminar(int id) throws SQLException {
         String sql = "DELETE FROM clientes WHERE id_cliente = ?";
-        try (Connection con = Conexion.getConneccion(); PreparedStatement pr = con.prepareStatement(sql)) {
+        try (Connection con = Conexion.getConexion(); PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setInt(1, id);
             pr.executeUpdate();
             mostrar();
@@ -74,5 +76,45 @@ public class ClienteDAO implements ICRUD<Cliente> {
 
     public ObservableList<Cliente> getClientes() {
         return clientes;
+    }
+
+    public boolean existeCedula(String cedula) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM clientes WHERE cedula = ?";
+        try (Connection con = Conexion.getConexion();
+             PreparedStatement pr = con.prepareStatement(sql)) {
+            pr.setString(1, cedula);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+            return false;
+        }
+    }
+
+    public boolean existeCedula(String cedula, int idExcluir) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM clientes WHERE cedula = ? AND id_cliente != ?";
+        try (Connection con = Conexion.getConexion();
+             PreparedStatement pr = con.prepareStatement(sql)) {
+            pr.setString(1, cedula);
+            pr.setInt(2, idExcluir);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+            return false;
+        }
+    }
+
+    public boolean tieneVentas(int id) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM ventas WHERE id_cliente = ?";
+        try (Connection con = Conexion.getConexion();
+             PreparedStatement pr = con.prepareStatement(sql)) {
+            pr.setInt(1, id);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+            return false;
+        }
     }
 }

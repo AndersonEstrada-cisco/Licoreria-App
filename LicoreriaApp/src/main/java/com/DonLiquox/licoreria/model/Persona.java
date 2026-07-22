@@ -29,11 +29,8 @@ public abstract class Persona {
     }
 
     public void setCedula(String cedula) {
-        validar(cedula,"cedula");
+        validar(cedula, "cedula");
         if (!cedula.matches("\\d{10}")) {
-            throw new IllegalArgumentException("La cédula solo debe contener números.");
-        }
-        if(cedula.length()!=10){
             throw new IllegalArgumentException("La cedula debe tener 10 numeros");
         }
         this.cedula = cedula;
@@ -57,7 +54,7 @@ public abstract class Persona {
     }
     public void validar(String valor, String campo){
         if(valor.trim().isEmpty()){
-            throw new IllegalArgumentException("No puede dejar el campo " + campo + "vacio");
+            throw new IllegalArgumentException("El campo " + campo + " no puede estar vacio");
         }
     }
 }

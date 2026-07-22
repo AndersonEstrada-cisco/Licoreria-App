@@ -16,7 +16,7 @@ public class ReporteDAO {
                 "JOIN ventas v ON dv.id_venta = v.id_venta " +
                 "WHERE DATE(v.fecha) = ? " +
                 "GROUP BY p.nombre ORDER BY total_ingreso DESC";
-        try (Connection con = Conexion.getConneccion();
+        try (Connection con = Conexion.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setDate(1, Date.valueOf(fecha));
             try (ResultSet rs = ps.executeQuery()) {

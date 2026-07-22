@@ -11,13 +11,12 @@ public class VentasDAO {
         String sqlDetalle = "INSERT INTO detalle_venta (id_venta, id_producto, cantidad, subtotal) VALUES (?, ?, ?, ?)";
         String sqlStock = "UPDATE productos SET stock = stock - ? WHERE id_producto = ?";
 
-        Connection con = Conexion.getConneccion();
+        Connection con = Conexion.getConexion();
         try {
-            con.setAutoCommit(false); // Transacción para seguridad
+            con.setAutoCommit(false);
 
-            // Insertar Venta
             PreparedStatement psVenta = con.prepareStatement(sqlVenta, Statement.RETURN_GENERATED_KEYS);
-            psVenta.setInt(1, venta.getUsuario().getId()); // Asegúrate que Usuario tenga getId()
+            psVenta.setInt(1, venta.getUsuario().getId());
             psVenta.setInt(2, venta.getIdCliente());
             psVenta.setDouble(3, venta.getTotal());
             psVenta.setTimestamp(4, Timestamp.valueOf(venta.getFecha()));
@@ -25,6 +24,8 @@ public class VentasDAO {
 
             ResultSet rs = psVenta.getGeneratedKeys();
             int idVentaNueva = rs.next() ? rs.getInt(1) : 0;
+            rs.close();
+            psVenta.close();
 
             for (DetalleVenta d : venta.getDetalles()) {
                 PreparedStatement psDetalle = con.prepareStatement(sqlDetalle);
@@ -33,11 +34,13 @@ public class VentasDAO {
                 psDetalle.setInt(3, d.getCantidad());
                 psDetalle.setDouble(4, d.getSubtotal());
                 psDetalle.executeUpdate();
+                psDetalle.close();
 
                 PreparedStatement psStock = con.prepareStatement(sqlStock);
                 psStock.setInt(1, d.getCantidad());
                 psStock.setInt(2, d.getProducto().getIdProducto());
                 psStock.executeUpdate();
+                psStock.close();
             }
             con.commit();
         } catch (SQLException e) {

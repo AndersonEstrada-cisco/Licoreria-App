@@ -5,10 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexion {
-    private static final String url = "jdbc:postgresql://localhost:5432/donliquox_db";
-    private static final String user ="postgres";
-    private static final String clave = "admin";
-    public static Connection getConneccion() throws SQLException {
+    private static final String url = "jdbc:postgresql://ep-rapid-brook-awue7rnb-pooler.c-12.us-east-1.aws.neon.tech/neondb?sslmode=require";
+    private static final String user ="neondb_owner";
+    private static final String clave = "npg_3Aho4EJrdBvs";
+    public static Connection getConexion() throws SQLException {
         try{
             return DriverManager.getConnection(url,user,clave);
         } catch (SQLException e) {
@@ -18,7 +18,7 @@ public class Conexion {
 
     public static void main(String[] args) throws Exception {
         try {
-            Connection con = getConneccion();
+            Connection con = getConexion();
             if (con != null) {
                 System.out.println("Conexión exitosa a la base de datos");
             }

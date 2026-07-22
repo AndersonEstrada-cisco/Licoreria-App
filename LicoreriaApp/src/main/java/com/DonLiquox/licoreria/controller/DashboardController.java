@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -20,6 +21,7 @@ public class DashboardController {
     @FXML private Button btnClientes;
     @FXML private Button btnVentas;
     @FXML private Button btnProductos;
+    private Usuario usuarioActual;
 
 
     public void cargarVista(String fxml) {
@@ -31,6 +33,10 @@ public class DashboardController {
                 throw new IOException("No se pudo encontrar el archivo FXML en: " + ruta);
             }
             Parent vista = loader.load();
+            Object controller = loader.getController();
+            if (controller instanceof VentaController) {
+                ((VentaController) controller).setUsuarioActual(usuarioActual);
+            }
             dashArea.setCenter(vista);
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Error en la carga: " + e.getMessage());
@@ -38,6 +44,7 @@ public class DashboardController {
         }
     }
     public void mostrarUser(Usuario u){
+        this.usuarioActual = u;
         lblUser.setText(u.getNombre());
         lblRol.setText(u.getRol());
         cargarVentanaRol(u.getRol());
@@ -75,6 +82,11 @@ public class DashboardController {
     }
 
     @FXML public void btnCerrarSesion(){
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION, "¿Estás seguro de cerrar sesión?", ButtonType.YES, ButtonType.NO);
+        confirmacion.showAndWait();
+        if (confirmacion.getResult() != ButtonType.YES) {
+            return;
+        }
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/DonLiquox/licoreria/view/login.fxml"));
             Parent root = loader.load();

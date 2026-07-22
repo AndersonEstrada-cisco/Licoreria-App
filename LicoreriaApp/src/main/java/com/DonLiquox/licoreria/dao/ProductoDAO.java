@@ -16,7 +16,7 @@ public class ProductoDAO implements ICRUD<Producto>{
     @Override
     public void ingresar(Producto p) throws SQLException {
         String sql = "INSERT INTO productos (nombre,categoria,precio,stock) VALUES (?,?,?,?)";
-        try (Connection con = Conexion.getConneccion();
+        try (Connection con = Conexion.getConexion();
              PreparedStatement pr = con.prepareStatement(sql)) {
 
             pr.setString(1, p.getNombre());
@@ -32,7 +32,7 @@ public class ProductoDAO implements ICRUD<Producto>{
     public void mostrar() throws SQLException {
         licores.clear();
         String sql = "SELECT * FROM productos";
-        try (Connection con = Conexion.getConneccion();
+        try (Connection con = Conexion.getConexion();
              PreparedStatement pr = con.prepareStatement(sql);
              ResultSet rs = pr.executeQuery()) {
             while (rs.next()){
@@ -45,14 +45,14 @@ public class ProductoDAO implements ICRUD<Producto>{
                 licores.add(licor);
             }
         }catch (Exception e){
-            throw new SQLException("Error al registrar los datos");
+            throw new SQLException("Error al registrar los datos", e);
         }
     }
 
     @Override
     public void actualizar(Producto p) throws SQLException {
         String sql ="UPDATE productos SET nombre = ?,categoria = ?, precio = ?, stock = ? WHERE id_producto = ?";
-        try (Connection con = Conexion.getConneccion();
+        try (Connection con = Conexion.getConexion();
              PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setString(1,p.getNombre());
             pr.setString(2,p.getCategoria());
@@ -62,24 +62,37 @@ public class ProductoDAO implements ICRUD<Producto>{
             pr.executeUpdate();
             mostrar();
         }catch (Exception e){
-            throw new SQLException("Error al actualizar en la base de datos");
+            throw new SQLException("Error al actualizar en la base de datos", e);
         }
     }
 
     @Override
     public void eliminar(int id) throws SQLException {
         String sql ="DELETE FROM productos WHERE  id_producto= ?";
-        try (Connection con = Conexion.getConneccion();
+        try (Connection con = Conexion.getConexion();
              PreparedStatement pr = con.prepareStatement(sql)) {
             pr.setInt(1,id);
             pr.executeUpdate();
             mostrar();
         }catch (Exception e){
-            throw new SQLException("Error al eliminaren la base de datos");
+            throw new SQLException("Error al eliminar en la base de datos", e);
         }
     }
 
     public ObservableList<Producto> getLicores() {
         return licores;
+    }
+
+    public boolean tieneVentas(int id) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM detalle_venta WHERE id_producto = ?";
+        try (Connection con = Conexion.getConexion();
+             PreparedStatement pr = con.prepareStatement(sql)) {
+            pr.setInt(1, id);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+            return false;
+        }
     }
 }

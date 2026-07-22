@@ -3,47 +3,42 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" spacing="15" styleClass="tema-ventas" stylesheets="@../../../../css/estilos.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.DonLiquox.licoreria.controller.VentaController">
+<VBox spacing="10" prefWidth="700" prefHeight="500" style="-fx-padding: 15; -fx-background-color: #BF95C7;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.DonLiquox.licoreria.controller.VentaController">
 
     <Label styleClass="titulo" text="Registro de Ventas" />
 
-    <GridPane alignment="CENTER" hgap="15" vgap="15">
+    <GridPane hgap="10" vgap="8">
         <columnConstraints>
-            <ColumnConstraints minWidth="80.0" />
-            <ColumnConstraints minWidth="200.0" />
-            <ColumnConstraints minWidth="80.0" />
-            <ColumnConstraints minWidth="200.0" />
+            <ColumnConstraints minWidth="70" prefWidth="70" />
+            <ColumnConstraints minWidth="200" prefWidth="200" />
+            <ColumnConstraints minWidth="80" prefWidth="80" />
+            <ColumnConstraints minWidth="200" prefWidth="200" />
         </columnConstraints>
         <children>
-            <Label style="-fx-text-fill: white;" text="Cliente" />
-            <ComboBox fx:id="cmbCliente" prefWidth="200.0" styleClass="input" GridPane.columnIndex="1" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Cliente" />
+            <ComboBox fx:id="cmbCliente" prefWidth="200" styleClass="input" GridPane.columnIndex="1" />
 
-            <Label style="-fx-text-fill: white;" text="Producto" GridPane.columnIndex="2" />
-            <ComboBox fx:id="cmbProducto" prefWidth="200.0" styleClass="input" GridPane.columnIndex="3" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Producto" GridPane.columnIndex="2" />
+            <ComboBox fx:id="cmbProducto" prefWidth="200" styleClass="input" GridPane.columnIndex="3" />
 
-            <Label style="-fx-text-fill: white;" text="Cantidad" GridPane.rowIndex="2" />
-            <TextField fx:id="txtCantidad" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Cantidad" GridPane.rowIndex="1" />
+            <TextField fx:id="txtCantidad" styleClass="input" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-            <Button onAction="#btnAgregar" styleClass="boton" text="Agregar al Carrito" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button onAction="#btnAgregar" styleClass="boton" text="Agregar al Carrito" GridPane.columnIndex="3" GridPane.rowIndex="1" />
         </children>
-      <rowConstraints>
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-      </rowConstraints>
     </GridPane>
 
-    <TableView fx:id="tblCarrito" prefHeight="200" prefWidth="600" styleClass="tabla">
+    <TableView fx:id="tblCarrito" styleClass="tabla" prefHeight="250" prefWidth="660">
         <columns>
-            <TableColumn fx:id="colProd" prefWidth="200.0" text="Producto" />
-            <TableColumn fx:id="colCant" prefWidth="100.0" text="Cantidad" />
-            <TableColumn fx:id="colPrecio" prefWidth="100.0" text="Precio" />
-            <TableColumn fx:id="colSubtotal" prefWidth="100.0" text="Subtotal" />
+            <TableColumn fx:id="colProd" prefWidth="200" text="Producto" />
+            <TableColumn fx:id="colCant" prefWidth="90" text="Cantidad" />
+            <TableColumn fx:id="colPrecio" prefWidth="110" text="Precio" />
+            <TableColumn fx:id="colSubtotal" prefWidth="110" text="Subtotal" />
         </columns>
     </TableView>
 
-    <HBox alignment="CENTER_RIGHT" spacing="20" style="-fx-padding: 0 50 0 0;">
-        <Label fx:id="lblTotal" text="Total: $0.00" />
+    <HBox alignment="CENTER_RIGHT" spacing="15" style="-fx-padding: 5 0 0 0;">
+        <Label fx:id="lblTotal" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Total: $0.00" />
         <Button onAction="#btnComprar" styleClass="boton" text="Finalizar Venta" />
     </HBox>
 

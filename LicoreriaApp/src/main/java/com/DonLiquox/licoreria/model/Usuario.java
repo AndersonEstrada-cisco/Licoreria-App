@@ -41,8 +41,8 @@ public class Usuario extends Persona {
         if (rol == null) {
             throw new IllegalArgumentException("El rol no puede ser nulo");
         }
-        if (!rol.equals("Administrador") && !rol.equals("Cajero")){
-            throw new IllegalArgumentException("El rol no se encunetra registrado");
+        if (!rol.equals("Administrador") && !rol.equals("Cajero") && !rol.equals("Reportes")){
+            throw new IllegalArgumentException("El rol no se encuentra registrado");
         }
         this.rol = rol;
     }
