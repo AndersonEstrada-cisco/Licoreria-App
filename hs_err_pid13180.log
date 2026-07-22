@@ -1,0 +1,300 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_IN_PAGE_ERROR (0xc0000006) at pc=0x00007ffd26071bc0, pid=13180, tid=14084
+#
+# JRE version:  (26.0+35) (build )
+# Java VM: OpenJDK 64-Bit Server VM (26+35-2893, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# Problematic frame:
+# C  [VCRUNTIME140.dll+0x11bc0]
+#
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -javaagent:D:\Programas\IntelliJ IDEA 2026.1\lib\idea_rt.jar=57119 -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 --module-path=C:\Users\USER\.m2\repository\org\openjfx\javafx-controls\24.0.2\javafx-controls-24.0.2-win.jar;C:\Users\USER\.m2\repository\org\openjfx\javafx-base\24.0.2\javafx-base-24.0.2-win.jar;D:\Materias_Uni\POO\Deberes\Licoreria-App\LicoreriaApp\target\classes;C:\Users\USER\.m2\repository\org\openjfx\javafx-fxml\24.0.2\javafx-fxml-24.0.2-win.jar;C:\Users\USER\.m2\repository\org\openjfx\javafx-graphics\24.0.2\javafx-graphics-24.0.2-win.jar -Djdk.module.main=com.DonLiquox.licoreria com.DonLiquox.licoreria/com.DonLiquox.licoreria.app.LicoreriaApplication
+
+Host: AMD Ryzen 5 2500U with Radeon Vega Mobile Gfx  , 4 cores, 6G,  Windows 10 , 64 bit Build 19041 (10.0.19041.5915)
+Time: Wed Jul 22 01:38:08 2026 Hora est. Pacífico, Sudamérica elapsed time: 0.169686 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread is native thread
+
+Stack: [0x000000b81dc00000,0x000000b81dd00000],  sp=0x000000b81dcfee68,  free space=1019k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [VCRUNTIME140.dll+0x11bc0]  (no source info available)
+V  [jvm.dll+0x7fdd82]  (no source info available)
+V  [jvm.dll+0x7fc720]  (no source info available)
+V  [jvm.dll+0x7fc011]  (no source info available)
+V  [jvm.dll+0x46dd02]  (no source info available)
+V  [jvm.dll+0x958bd2]  (no source info available)
+V  [jvm.dll+0x5110a1]  (no source info available)
+V  [jvm.dll+0x512b61]  (no source info available)
+C  [jli.dll+0x549a]  (no source info available)
+C  [ucrtbase.dll+0x21bb2]  (no source info available)
+C  [KERNEL32.DLL+0x17374]  (no source info available)
+C  [ntdll.dll+0x4cc91]  (no source info available)
+
+
+siginfo: EXCEPTION_IN_PAGE_ERROR (0xc0000006), writing address 0x0000023ef6120020
+
+
+Registers:
+RAX=0x0000023ef6120000, RBX=0x0000023ef6120000, RCX=0x0000023ef6120020, RDX=0x0000000000000020
+RSP=0x000000b81dcfee68, RBP=0x0000023ef67e54a0, RSI=0x0000023ef45436c0, RDI=0x0000023ef460c920
+R8 =0x000000000000ffe0, R9 =0xffffffffffffffe0, R10=0x00007ffd26060000, R11=0x0000000000000000
+R12=0x00007ffd0e7e9e90, R13=0x0000000000000003, R14=0x0000000000010000, R15=0x000000000000337c
+RIP=0x00007ffd26071bc0, EFLAGS=0x0000000000010283
+
+XMM[0]=0x0000000000000000 0x0000000000000000
+XMM[1]=0x0000000000000000 0x0000000000000000
+XMM[2]=0x0000000000000000 0x0000000000000000
+XMM[3]=0x0000000000000000 0x0000000000000000
+XMM[4]=0x0000000000000000 0x0000000000000000
+XMM[5]=0x0000000000000000 0x0000000000000000
+XMM[6]=0x0000000000000000 0x0000000000000000
+XMM[7]=0x0000000000000000 0x0000000000000000
+XMM[8]=0x0000000000000000 0x0000000000000000
+XMM[9]=0x0000000000000000 0x0000000000000000
+XMM[10]=0x0000000000000000 0x0000000000000000
+XMM[11]=0x0000000000000000 0x0000000000000000
+XMM[12]=0x0000000000000000 0x0000000000000000
+XMM[13]=0x0000000000000000 0x0000000000000000
+XMM[14]=0x0000000000000000 0x0000000000000000
+XMM[15]=0x0000000000000000 0x0000000000000000
+  MXCSR=0x00001f80
+
+
+Top of Stack: (sp=0x000000b81dcfee68)
+0x000000b81dcfee68:   00007ffd0e85dd82 0000023ef67e1b90   ..........~.>...
+0x000000b81dcfee78:   0000023e00000000 0000023ef4552c05   ....>....,U.>...
+0x000000b81dcfee88:   0000023ef460c920 0000000000010000    .`.>...........
+0x000000b81dcfee98:   000000b81dcfeeb4 000000b81dcff010   ................
+0x000000b81dcfeea8:   0000000000000104 03e706ff00000101   ................
+0x000000b81dcfeeb8:   000000b8000000ff 0000000000000002   ................
+0x000000b81dcfeec8:   00007ffd4fb9b3c7 0000023ef4480000   ...O......H.>...
+0x000000b81dcfeed8:   000000b800000000 0000000000000014   ................
+0x000000b81dcfeee8:   00007ffd00000000 0000023ef4480000   ..........H.>...
+0x000000b81dcfeef8:   0000000000000000 00000002005c3a43   ........C:\.....
+0x000000b81dcfef08:   00007ffd00000000 0000000000000000   ................
+0x000000b81dcfef18:   000000000befe4e5 000000020000000a   ................
+0x000000b81dcfef28:   0000000000000000 0000000000000000   ................
+0x000000b81dcfef38:   00007ffd4fb90b31 b8d6154800000000   1..O........H...
+0x000000b81dcfef48:   0000000000000000 0000000000090025   ........%.......
+0x000000b81dcfef58:   0000000000000006 0000023ef4569640   ........@.V.>...
+0x000000b81dcfef68:   0000023ef4480000 0000023ef4481080   ..H.>.....H.>...
+0x000000b81dcfef78:   0000023ef67e5450 0000023e00000000   PT~.>.......>...
+0x000000b81dcfef88:   0000023ef4480e40 00000000000f003b   @.H.>...;.......
+0x000000b81dcfef98:   0000023ef4480000 000000b81dcffdb0   ..H.>...........
+0x000000b81dcfefa8:   000000b81dcffcc8 0000000000000003   ................
+0x000000b81dcfefb8:   00007ffd0e7e9e90 000000b81dcff110   ..~.............
+0x000000b81dcfefc8:   0000000000000009 000000b81dcff080   ................
+0x000000b81dcfefd8:   00007ffd4d9bfde6 0000000000000000   ...M............
+0x000000b81dcfefe8:   0000000000000014 000000b81dcff0b0   ................
+0x000000b81dcfeff8:   00007ffd4d9b0000 000000b81dcff110   ...M............
+0x000000b81dcff008:   00007ffd0e828e72 000000005346544e   r.......NTFS....
+0x000000b81dcff018:   000000b81dcf0000 0000000000000000   ................
+0x000000b81dcff028:   00007ffd0e828e72 0000000000000014   r...............
+0x000000b81dcff038:   00007ffd0e82b7b4 000000b81dcff110   ................
+0x000000b81dcff048:   00007ffd4fbc1910 0000000000000009   ...O............
+0x000000b81dcff058:   00007ffd0e150f76 0000c2d5a582b4ce   v...............
+
+Instructions: (pc=0x00007ffd26071bc0)
+  0x00007ffd26071ac0:   49 03 c8 47 8b 8c 82 30 5f 01 00 4d 03 ca 41 ff
+  0x00007ffd26071ad0:   e1 4c 89 59 f1 44 89 59 f9 66 44 89 59 fd 44 88
+  0x00007ffd26071ae0:   59 ff c3 4c 89 59 f2 44 89 59 fa 66 44 89 59 fe
+  0x00007ffd26071af0:   c3 66 66 66 66 66 66 66 0f 1f 84 00 00 00 00 00
+  0x00007ffd26071b00:   4c 89 59 f3 44 89 59 fb 44 88 59 ff c3 0f 1f 00
+  0x00007ffd26071b10:   4c 89 59 f4 44 89 59 fc c3 4c 89 59 f5 66 44 89
+  0x00007ffd26071b20:   59 fd 44 88 59 ff c3 4c 89 59 f7 44 88 59 ff c3
+  0x00007ffd26071b30:   4c 89 59 f6 66 44 89 59 fe c3 4c 89 59 f8 c3 90
+  0x00007ffd26071b40:   66 0f 6c c0 49 83 f8 20 77 0c f3 0f 7f 01 f3 42
+  0x00007ffd26071b50:   0f 7f 44 01 f0 c3 83 3d 33 75 00 00 03 0f 82 dd
+  0x00007ffd26071b60:   01 00 00 4c 3b 05 2e 75 00 00 76 16 4c 3b 05 2d
+  0x00007ffd26071b70:   75 00 00 77 0d f6 05 a4 78 00 00 02 0f 85 fe fe
+  0x00007ffd26071b80:   ff ff c4 e3 7d 18 c0 01 4c 8b c9 49 83 e1 1f 49
+  0x00007ffd26071b90:   83 e9 20 49 2b c9 49 2b d1 4d 03 c1 49 81 f8 00
+  0x00007ffd26071ba0:   01 00 00 76 65 4c 3b 05 f4 74 00 00 0f 87 ce 00
+  0x00007ffd26071bb0:   00 00 66 66 66 66 66 66 0f 1f 84 00 00 00 00 00
+=>0x00007ffd26071bc0:   c5 fd 7f 01 c5 fd 7f 41 20 c5 fd 7f 41 40 c5 fd
+  0x00007ffd26071bd0:   7f 41 60 c5 fd 7f 81 80 00 00 00 c5 fd 7f 81 a0
+  0x00007ffd26071be0:   00 00 00 c5 fd 7f 81 c0 00 00 00 c5 fd 7f 81 e0
+  0x00007ffd26071bf0:   00 00 00 48 81 c1 00 01 00 00 49 81 e8 00 01 00
+  0x00007ffd26071c00:   00 49 81 f8 00 01 00 00 73 b6 4d 8d 48 1f 49 83
+  0x00007ffd26071c10:   e1 e0 4d 8b d9 49 c1 eb 05 47 8b 9c 9a 70 5f 01
+  0x00007ffd26071c20:   00 4d 03 da 41 ff e3 c4 a1 7e 7f 84 09 00 ff ff
+  0x00007ffd26071c30:   ff c4 a1 7e 7f 84 09 20 ff ff ff c4 a1 7e 7f 84
+  0x00007ffd26071c40:   09 40 ff ff ff c4 a1 7e 7f 84 09 60 ff ff ff c4
+  0x00007ffd26071c50:   a1 7e 7f 44 09 80 c4 a1 7e 7f 44 09 a0 c4 a1 7e
+  0x00007ffd26071c60:   7f 44 09 c0 c4 a1 7e 7f 44 01 e0 c5 fe 7f 00 c5
+  0x00007ffd26071c70:   f8 77 c3 66 66 66 66 66 0f 1f 84 00 00 00 00 00
+  0x00007ffd26071c80:   c5 fd e7 01 c5 fd e7 41 20 c5 fd e7 41 40 c5 fd
+  0x00007ffd26071c90:   e7 41 60 c5 fd e7 81 80 00 00 00 c5 fd e7 81 a0
+  0x00007ffd26071ca0:   00 00 00 c5 fd e7 81 c0 00 00 00 c5 fd e7 81 e0
+  0x00007ffd26071cb0:   00 00 00 48 81 c1 00 01 00 00 49 81 e8 00 01 00
+
+
+
+---------------  P R O C E S S  ---------------
+
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap address: 0x0000000000000000, size: 0 MB, Compressed Oops mode: 32-bit
+
+CDS archive(s) mapped at: [0x0000000000000000-0x0000000000000000-0x0000000000000000), size 0, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 1.
+UseCompressedClassPointers 1, UseCompactObjectHeaders 0
+Narrow klass pointer bits 32, Max shift 3
+Narrow klass base: 0xffffffffffffffff, Narrow klass shift: -1
+Encoding Range: [0xffffffffffffffff - 0x000000007fffffff), (2147483648 bytes)
+Klass Range:    [0x0000000000000000 - 0x0000000000000000), (0 bytes)
+Klass ID Range:  [4294967295 - 0) (1)
+No protection zone.
+
+GC Precious Log:
+<Not initialized>
+
+Dll operation events (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes loaded (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Memory protections (0 events):
+No events
+
+Nmethod flushes (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff758c20000 - 0x00007ff758c2e000 	C:\Users\USER\.jdks\openjdk-26\bin\java.exe
+0x00007ffd4fb70000 - 0x00007ffd4fd68000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffd4f590000 - 0x00007ffd4f652000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffd4d400000 - 0x00007ffd4d6f6000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffd4d9b0000 - 0x00007ffd4dab0000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffd26060000 - 0x00007ffd2607e000 	C:\Users\USER\.jdks\openjdk-26\bin\VCRUNTIME140.dll
+0x00007ffd2bb70000 - 0x00007ffd2bb87000 	C:\Users\USER\.jdks\openjdk-26\bin\jli.dll
+0x00007ffd4e990000 - 0x00007ffd4eb31000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffd4d700000 - 0x00007ffd4d722000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffd4e4b0000 - 0x00007ffd4e4db000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffd4d2e0000 - 0x00007ffd4d3f9000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffd4d7b0000 - 0x00007ffd4d84d000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffd3c790000 - 0x00007ffd3ca2b000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.6456_none_60b8a6cb71f64256\COMCTL32.dll
+0x00007ffd4e810000 - 0x00007ffd4e8ae000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffd4e470000 - 0x00007ffd4e49f000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffd45a40000 - 0x00007ffd45a4c000 	C:\Users\USER\.jdks\openjdk-26\bin\vcruntime140_1.dll
+0x00007ffd25e60000 - 0x00007ffd25eed000 	C:\Users\USER\.jdks\openjdk-26\bin\msvcp140.dll
+0x00007ffd0e060000 - 0x00007ffd0ef2e000 	C:\Users\USER\.jdks\openjdk-26\bin\server\jvm.dll
+0x00007ffd4ddc0000 - 0x00007ffd4de71000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffd4f340000 - 0x00007ffd4f3df000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffd4e6e0000 - 0x00007ffd4e800000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffd4d2b0000 - 0x00007ffd4d2d7000 	C:\WINDOWS\System32\bcrypt.dll
+0x00007ffd4e4e0000 - 0x00007ffd4e54b000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffd4d060000 - 0x00007ffd4d0ab000 	C:\WINDOWS\SYSTEM32\POWRPROF.dll
+0x00007ffd41a00000 - 0x00007ffd41a27000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffd42c70000 - 0x00007ffd42c7a000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffd4d040000 - 0x00007ffd4d052000 	C:\WINDOWS\SYSTEM32\UMPDC.dll
+0x00007ffd4b070000 - 0x00007ffd4b082000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ffd36c50000 - 0x00007ffd36c5a000 	C:\Users\USER\.jdks\openjdk-26\bin\jimage.dll
+0x00007ffd42eb0000 - 0x00007ffd430b1000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ffd36c80000 - 0x00007ffd36cb4000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ffd4db00000 - 0x00007ffd4db82000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffd39e60000 - 0x00007ffd39e70000 	C:\Users\USER\.jdks\openjdk-26\bin\instrument.dll
+0x00007ffd2bec0000 - 0x00007ffd2bedf000 	C:\Users\USER\.jdks\openjdk-26\bin\java.dll
+0x00007ffd4e550000 - 0x00007ffd4e67b000 	C:\WINDOWS\System32\ole32.dll
+0x00007ffd4e060000 - 0x00007ffd4e3b4000 	C:\WINDOWS\System32\combase.dll
+0x00007ffd4ebd0000 - 0x00007ffd4f340000 	C:\WINDOWS\System32\SHELL32.dll
+
+JVMTI agents:
+D:\Programas\IntelliJ IDEA 2026.1\lib\idea_rt.jar path:none, loaded, not initialized, instrumentlib options:57119
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Users\USER\.jdks\openjdk-26\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.6456_none_60b8a6cb71f64256;C:\Users\USER\.jdks\openjdk-26\bin\server
+
+VM Arguments:
+jvm_args: -javaagent:D:\Programas\IntelliJ IDEA 2026.1\lib\idea_rt.jar=57119 -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 --module-path=C:\Users\USER\.m2\repository\org\openjfx\javafx-controls\24.0.2\javafx-controls-24.0.2-win.jar;C:\Users\USER\.m2\repository\org\openjfx\javafx-base\24.0.2\javafx-base-24.0.2-win.jar;D:\Materias_Uni\POO\Deberes\Licoreria-App\LicoreriaApp\target\classes;C:\Users\USER\.m2\repository\org\openjfx\javafx-fxml\24.0.2\javafx-fxml-24.0.2-win.jar;C:\Users\USER\.m2\repository\org\openjfx\javafx-graphics\24.0.2\javafx-graphics-24.0.2-win.jar -Djdk.module.main=com.DonLiquox.licoreria 
+java_command: com.DonLiquox.licoreria/com.DonLiquox.licoreria.app.LicoreriaApplication
+java_class_path (initial): C:\Users\USER\.m2\repository\org\openjfx\javafx-controls\24.0.2\javafx-controls-24.0.2.jar;C:\Users\USER\.m2\repository\org\openjfx\javafx-graphics\24.0.2\javafx-graphics-24.0.2.jar;C:\Users\USER\.m2\repository\org\openjfx\javafx-base\24.0.2\javafx-base-24.0.2.jar;C:\Users\USER\.m2\repository\org\openjfx\javafx-fxml\24.0.2\javafx-fxml-24.0.2.jar;C:\Users\USER\.m2\repository\org\postgresql\postgresql\42.7.2\postgresql-42.7.2.jar;C:\Users\USER\.m2\repository\org\checkerframework\checker-qual\3.42.0\checker-qual-3.42.0.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     bool AOTAdapterCaching                        = false                                  {diagnostic} {ergonomic}
+     bool AOTInvokeDynamicLinking                  = false                                  {diagnostic} {ergonomic}
+     bool AOTRecordTraining                        = false                                  {diagnostic} {ergonomic}
+     bool AOTReplayTraining                        = false                                  {diagnostic} {ergonomic}
+     bool AOTStubCaching                           = false                                  {diagnostic} {ergonomic}
+     uint ConcGCThreads                            = 1                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 4                                         {product} {ergonomic}
+   size_t InitialHeapSize                          = 6815736                                   {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 1861928960                                {product} {ergonomic}
+ uint64_t MaxRAM                                   = 7447715840                                {product} {ergonomic}
+   size_t MinHeapSize                              = 6815736                                   {product} {ergonomic}
+   size_t ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags foldmultilines=false
+ #1: stderr all=off uptime,level,tags foldmultilines=false
+
+Release file:
+<release file has not been read>
+Environment Variables:
+PATH=D:\New Folder\bin\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;D:\bios\Git\cmd;C:\Users\USER\AppData\Local\Programs\Python\Launcher\;C:\Users\USER\AppData\Local\Microsoft\WindowsApps;;C:\Users\USER\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\USER\.dotnet\tools
+USERNAME=USER
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=AMD64 Family 23 Model 17 Stepping 0, AuthenticAMD
+TMP=C:\Users\USER\AppData\Local\Temp
+TEMP=C:\Users\USER\AppData\Local\Temp
+
+
+
+Compilation memory statistics disabled.
+
+Periodic native trim disabled
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 10 , 64 bit Build 19041 (10.0.19041.5915)
+OS uptime: 0 days 9:50 hours
+
+CPU: total 4 (initial active 4) 
+Processor Information for the first 4 processors :
+  Max Mhz: 2000, Current Mhz: 2000, Mhz Limit: 2000
+
+Memory: 4k page, system-wide physical 7102M (133M free)
+TotalPageFile size 14795M (AvailPageFile size 1025M)
+current process WorkingSet (physical memory assigned to process): 9M, peak: 9M
+current process commit charge ("private bytes"): 4M, peak: 4M
+
+vm_info: OpenJDK 64-Bit Server VM (26+35-2893) for windows-amd64 JRE (26+35-2893), built on 2026-02-12T17:04:02Z with MS VC++ 17.13 (VS2022)
+
+END.
